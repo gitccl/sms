@@ -1,0 +1,87 @@
+body {
+    background-color: #DFE1E5;
+}
+.container{margin: 0 auto; max-width: 1960px;}
+.row{width: 100%; float: left; margin:0 10px 110px 10px;}
+
+/*= common css to all effects =*/
+.single-member{width: 250px; float: left; margin: 30px 2.5%; background-color: #fff; text-align: center; position: relative;}
+.member-image img{max-width: 100%; vertical-align: middle;}
+h3 {
+    font-size: 24px;
+    font-weight: normal;
+    margin:0;
+    text-transform: uppercase;
+    font-family: 'Microsoft YaHei UI';
+}
+h5 {
+    font-size: 16px;
+    font-weight: 300;
+    margin: 0;
+    line-height: 22px;
+    font-family: 'Microsoft YaHei UI';
+}
+p {font-size: 12px;color:#808080; line-height: 22px; padding: 0 30px; margin-bottom:31px;}
+.social-touch{
+    margin-top:0px;
+}
+.social-touch a {
+    display: inline-block;
+    width: 250px;
+    height: 40px;
+    margin-top:10px;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+    text-align:center;
+    line-height:40px;
+    transition: 0.3s;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: 'Microsoft YaHei UI'
+}
+.social-touch a:hover{opacity: 1; transition: 0.3s; color:white;}
+/*= common css to all effects end =*/
+
+/*= effect-3 css =*/
+.effect-3{max-height: 270px; min-height: 270px; overflow: hidden;border-radius:5px;}
+.effect-3 h3{padding-top: 7px; line-height: 33px;}
+    .effect-3 .member-image {
+        border-bottom: 8px solid #3BB13E;
+        transition: 0.4s;
+        height: 195px;
+        width: 100%;
+        display: inline-block;
+        float: none;
+        vertical-align: middle;
+    }
+.effect-3 .member-info{transition: 0.4s;}
+.effect-3 .member-image img{width: 100%; vertical-align: bottom;}
+    .effect-3 .social-touch {
+        float: left;
+        left: 0;
+        bottom: 0;
+        overflow: hidden;
+        padding: 5px 0;
+        width: 100%;
+        transition: 0.4s;
+    }
+.effect-3:hover .member-image{border-bottom: 0; border-radius: 0 0 50px 50px; height: 81px; display: inline-block; overflow: hidden; width: 109px; transition: 0.4s;}
+/*= effect-3 css end =*/
+.toolinfobar{
+    margin:10px;
+}
+.x-right{
+    float:right;
+    margin-right:100px;
+    overflow:hidden;
+}
+/*= Media Query 
+=============== */
+@media only screen and (max-width: 1080px) {
+    .row{width: 100%; margin: 110px 0;}
+	.team-members{text-align: center;}
+	.single-member{float: none; display: inline-block; vertical-align: bottom;}
+}
+/*= Media Query End
+=================== */

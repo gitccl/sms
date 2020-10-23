@@ -10,7 +10,6 @@
     <packaging>war</packaging>
 
     <name>sms Maven Webapp</name>
-    <!-- FIXME change it to the project's website -->
     <url>http://www.akwing.cn</url>
 
     <dependencies>
@@ -50,6 +49,20 @@
             <version>1.2</version>
         </dependency>
 
+
+        <!-- JSTL -->
+        <dependency>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-spec</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-impl</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
@@ -80,6 +93,13 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
             <version>5.2.0</version>
+        </dependency>
+
+        <!-- 验证码工具包 -->
+        <dependency>
+            <groupId>com.github.whvcse</groupId>
+            <artifactId>easy-captcha</artifactId>
+            <version>1.6.2</version>
         </dependency>
 
     </dependencies>

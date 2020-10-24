@@ -1,6 +1,21 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
+    <inspection_tool class="AlibabaAbstractMethodOrInterfaceMethodMustUseJavadoc" enabled="false" level="MAJOR" enabled_by_default="false" />
+    <inspection_tool class="AlibabaClassMustHaveAuthor" enabled="false" level="MAJOR" enabled_by_default="false" />
+    <inspection_tool class="AlibabaCollectionInitShouldAssignCapacity" enabled="false" level="MAJOR" enabled_by_default="false" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="3">
+            <item index="0" class="java.lang.String" itemvalue="lay-verify" />
+            <item index="1" class="java.lang.String" itemvalue="lay-filter" />
+            <item index="2" class="java.lang.String" itemvalue="lay-submit" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
     <inspection_tool class="JavaDoc" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="TOP_LEVEL_CLASS_OPTIONS">
         <value>

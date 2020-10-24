@@ -32,7 +32,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
-        <!--<property name="mapperLocations" value="classpath:mapper/*.xml"/>-->
+        <property name="mapperLocations" value="classpath:cn/akwing/sms/mapper/*.xml"/>
     </bean>
 
     <!-- 4. 配置扫描Dao接口包，动态实现Dao接口注入到spring容器中-->
@@ -40,7 +40,7 @@
         <!-- 这个sqlSessionFactory就是上面的那个bean id
             sqlSessionFactoryBeanName是Name, 要用value, 不能用ref  -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-        <property name="basePackage" value="cn.akwing.sms.dao"/>
+        <property name="basePackage" value="cn.akwing.sms.mapper"/>
     </bean>
 
 </beans>

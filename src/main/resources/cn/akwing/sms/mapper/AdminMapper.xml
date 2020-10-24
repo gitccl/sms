@@ -41,4 +41,10 @@
         select id, username, password, name, gender, email, telephone
         from admin
     </select>
+
+    <select id="login" resultMap="BaseResultMap">
+        select * from admin where username = #{username} and password = #{password}
+    </select>
+
+
 </mapper>

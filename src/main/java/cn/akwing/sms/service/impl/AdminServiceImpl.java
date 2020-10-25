@@ -4,7 +4,6 @@ import cn.akwing.sms.mapper.AdminMapper;
 import cn.akwing.sms.pojo.Admin;
 import cn.akwing.sms.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,7 +16,7 @@ public class AdminServiceImpl implements AdminService {
     public AdminMapper adminMapper;
 
     @Override
-    public Admin login(String username, String password) {
-        return adminMapper.login(username, password);
+    public Admin login(String id, String password) {
+        return adminMapper.login(id, password);
     }
 }

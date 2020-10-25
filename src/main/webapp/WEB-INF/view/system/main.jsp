@@ -51,7 +51,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="${pageContext.request.contextPath}/student/goStudent">
+                        <a _href="${pageContext.request.contextPath}/student/goStudentManage">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>学生信息</cite>
                         </a>

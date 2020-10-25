@@ -28,10 +28,10 @@ public class SystemController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public Map<String, Object> login(String username, String password, HttpSession session){
-        System.out.println(username + " " + password);
+    public Map<String, Object> login(String id, String password, HttpSession session){
+        System.out.println(id + " " + password);
         Map<String, Object> map = new HashMap<String, Object>();
-        Admin admin = adminService.login(username, password);
+        Admin admin = adminService.login(id, password);
         if(admin != null) {
             session.setAttribute("userInfo", admin);
             session.setAttribute("userType", 1);

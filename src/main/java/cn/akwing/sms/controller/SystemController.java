@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,12 +28,13 @@ public class SystemController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public Map<String, Object> login(String username, String password){
+    public Map<String, Object> login(String username, String password, HttpSession session){
         System.out.println(username + " " + password);
         Map<String, Object> map = new HashMap<String, Object>();
         Admin admin = adminService.login(username, password);
         if(admin != null) {
-            map.put("userInfo", admin);
+            session.setAttribute("userInfo", admin);
+            session.setAttribute("userType", 1);
             map.put("success", true);
         } else{
             map.put("success", false);
@@ -44,6 +46,18 @@ public class SystemController {
     @RequestMapping("/goMain")
     private String goMain(){
         return "system/main";
+    }
+
+    @RequestMapping("/goWelcome")
+    private String goWelcome(){
+        return "system/welcome";
+    }
+
+    @RequestMapping("/goLogout")
+    private String goLogout(HttpSession session){
+        session.removeAttribute("userInfo");
+        session.removeAttribute("userType");
+        return "system/login";
     }
 
 }

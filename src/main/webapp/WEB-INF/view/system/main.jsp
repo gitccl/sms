@@ -30,7 +30,7 @@
             <a href="javascript:;" id="user"></a>
             <dl class="layui-nav-child">
                 <!-- 二级菜单 -->
-                <dd><a href="/">退出</a></dd>
+                <dd><a href="${pageContext.request.contextPath}/system/goLogout">退出</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item to-index"><a href="/">前台首页</a></li>
@@ -51,7 +51,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="studentManage.jsp">
+                        <a _href="${pageContext.request.contextPath}/student/goStudent">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>学生信息</cite>
                         </a>
@@ -109,7 +109,8 @@
         </ul>
         <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe src="studentManage.jsp" frameborder="0" scrolling="yes" class="x-iframe" id="main"></iframe>
+                <%-- 无法直接访问WEB-INF下的内容，借助Controller跳转 --%>
+                <iframe src="${pageContext.request.contextPath}/system/goWelcome" frameborder="0" scrolling="yes" class="x-iframe" id="main"></iframe>
             </div>
         </div>
     </div>
@@ -127,8 +128,9 @@
 </body>
 <script>
     $(function () {
-        var session='${sessionScope.student.name}';
-        if(session==""){
+        let userType = '${sessionScope.userType}';
+        console.log(userType);
+        if(userType == 1){
             $("#user").text("admin");
             $("#studentInfo").css("display","none");
             $("#updatePassword").css("display","none");

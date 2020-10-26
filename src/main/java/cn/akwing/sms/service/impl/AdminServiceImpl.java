@@ -13,10 +13,12 @@ import org.springframework.stereotype.Service;
 public class AdminServiceImpl implements AdminService {
 
     @Autowired
-    public AdminMapper adminMapper;
+    private AdminMapper adminMapper;
 
     @Override
     public Admin login(String id, String password) {
         return adminMapper.login(id, password);
     }
+
+
 }

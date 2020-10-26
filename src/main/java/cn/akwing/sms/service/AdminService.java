@@ -7,6 +7,7 @@ import cn.akwing.sms.pojo.Admin;
  */
 public interface AdminService {
 
-    public Admin login(String id, String password);
+    Admin login(String id, String password);
+
 
 }

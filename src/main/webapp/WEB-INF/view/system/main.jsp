@@ -33,7 +33,7 @@
                 <dd><a href="${pageContext.request.contextPath}/system/goLogout">退出</a></dd>
             </dl>
         </li>
-        <li class="layui-nav-item to-index"><a href="/">前台首页</a></li>
+        <li class="layui-nav-item to-index"><a href="${pageContext.request.contextPath}/system/goMain">前台首页</a></li>
     </ul>
 
 </div>
@@ -128,8 +128,8 @@
 </body>
 <script>
     $(function () {
-        let userType = '${sessionScope.userType}';
-        console.log(userType);
+        let userType = ${sessionScope.userType};
+        console.log("main: " + typeof (userType) + userType);
         if(userType == 1){
             $("#user").text("admin");
             $("#studentInfo").css("display","none");

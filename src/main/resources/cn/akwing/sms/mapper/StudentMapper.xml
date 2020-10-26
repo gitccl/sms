@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.akwing.sms.mapper.StudentMapper">
+    <resultMap id="BaseResultMap" type="Student">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="sex" jdbcType="VARCHAR" property="sex" />
+        <result column="tel" jdbcType="VARCHAR" property="tel" />
+        <result column="grade" jdbcType="VARCHAR" property="grade" />
+        <result column="dept" jdbcType="VARCHAR" property="dept" />
+        <result column="major" jdbcType="VARCHAR" property="major" />
+        <result column="of_class" jdbcType="VARCHAR" property="ofClass" />
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from student
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="Student">
+        insert into student (id, password, name,
+                             sex, tel, grade, dept,
+                             major, of_class)
+        values (#{id,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+                #{sex,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR}, #{dept,jdbcType=VARCHAR},
+                #{major,jdbcType=VARCHAR}, #{ofClass,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="Student">
+        update student
+        set password = #{password,jdbcType=VARCHAR},
+            name = #{name,jdbcType=VARCHAR},
+            sex = #{sex,jdbcType=VARCHAR},
+            tel = #{tel,jdbcType=VARCHAR},
+            grade = #{grade,jdbcType=VARCHAR},
+            dept = #{dept,jdbcType=VARCHAR},
+            major = #{major,jdbcType=VARCHAR},
+            of_class = #{ofClass,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select id, password, name, sex, tel, grade, dept, major, of_class
+        from student
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select id, password, name, sex, tel, grade, dept, major, of_class
+        from student
+    </select>
+
+
+    <select id="selectByCondition" parameterType="Student" resultMap="BaseResultMap">
+        select * from student
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="name != null">
+                and name like CONCAT('%',#{name},'%')
+            </if>
+            <if test="ofClass != null">
+                and of_class = #{ofClass}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

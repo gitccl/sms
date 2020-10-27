@@ -43,7 +43,7 @@
         from course as c, teacher as t
         where c.teacher_id = t.id
         <if test="name != null">
-            and c.name = #{name}
+            and c.name like CONCAT('%',#{name},'%')
         </if>
         <if test="teacherName != null">
             and t.name = #{teacherName}

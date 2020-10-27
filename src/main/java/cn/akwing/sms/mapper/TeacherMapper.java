@@ -13,4 +13,6 @@ public interface TeacherMapper {
     List<Teacher> selectAll();
 
     int updateByPrimaryKey(Teacher record);
+
+    List<Teacher> selectByCondition(Teacher teacher);
 }

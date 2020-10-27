@@ -48,7 +48,7 @@ public class CourseController {
     }
 
 
-    @RequestMapping("/insertCourse")
+    @RequestMapping("/addCourse")
     @ResponseBody
     public Map<String, Object> insertCourse(Course course){
         System.out.println("insertCourse ->" + course);

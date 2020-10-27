@@ -35,7 +35,7 @@ public class StudentController {
 
     @RequestMapping("/getStudentList")
     @ResponseBody
-    public Map<String, Object> getStudentList(int page, int limit, Student student, HttpSession session){
+    public Map<String, Object> getStudentList(int page, int limit, Student student){
 
         /* 开启分页 */
         PageHelper.startPage(page, limit);

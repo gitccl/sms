@@ -44,7 +44,8 @@
         </javaClientGenerator>
         <!-- 指定数据库表 -->
         <!--<table tableName="admin" domainObjectName="Admin"/>-->
-        <table tableName="student" domainObjectName="Student"/>
+        <!--<table tableName="student" domainObjectName="Student"/>-->
+        <table tableName="course" domainObjectName="Course"/>
 
     </context>
 </generatorConfiguration>

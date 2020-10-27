@@ -158,6 +158,7 @@
 
 <script type="text/html" id="toolbar">
     <button class="layui-btn layui-btn-danger" lay-event="refresh"><i class="layui-icon">&#xe669</i>刷新</button>
+    <button class="layui-btn" lay-event="delMany" id="delMany"><i class="layui-icon">&#xe640;</i>删除</button>
     <button class="layui-btn" lay-event="add" id="add"><i class="layui-icon">&#xe61f;</i>添加学生</button>
     <button class="layui-btn" lay-event="edit" id="editOwner"><i class="layui-icon"></i>修改个人信息</button>
 
@@ -281,7 +282,37 @@
                             "ofClass": "${sessionScope.student.ofClass}"
                         });
                         break;
+                    case 'delMany':
+                        var checkStatus = table.checkStatus(obj.config.id);
+                        var data = checkStatus.data
+                        console.log(data);
+                        var ids = new Array(data.length);
+                        for(var j = 0,len = data.length; j < len; j++){
+                            ids[j] = data[j].id;
+                        }
+                        /* TODO: 删除后刷新页面，或者obj.del() ? */
+                        layer.confirm('确定删除选中的行吗？', function (index) {
+                            layer.close(index);
+                            $.ajax({
+                                url: "${pageContext.request.contextPath}/student/deleteStudent",
+                                method: "GET",
+                                traditional: true,
+                                data: {"id": ids},
+                                dataType: 'json',
+                                success: function (data) {
+                                    if(data.success) {
+                                        /* 刷新表格 */
+                                        studentTable.reload();
+                                    }
+                                    layer.msg(data.msg);
+                                },
+                                error: function () {
+                                    layer.msg("出错了......");
+                                }
+                            });
 
+                        });
+                        break;
                 }
             });
 
@@ -290,10 +321,14 @@
                 var data = obj.data;
                 if (obj.event === 'del') {
                     layer.confirm('真的删除行么', function (index) {
+                        var ids = [data.id];
+                        console.log("del one ->" + ids);
                         $.ajax({
                             url: "${pageContext.request.contextPath}/student/deleteStudent",
+                            /* TODO: 测POST */
                             method: "GET",
-                            data: {"id": data.id},
+                            traditional: true,
+                            data: {"id": ids },
                             success: function (data) {
                                 if(data.success) {
                                     obj.del();

@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface StudentMapper {
-    int deleteByPrimaryKey(@Param("id") String id);
+    int deleteByPrimaryKey(@Param("id") String[] id);
 
     int insert(Student record);
 

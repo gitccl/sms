@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +61,8 @@ public class StudentController {
 
     @RequestMapping("/deleteStudent")
     @ResponseBody
-    public Map<String, Object> deleteStudent(String id){
+    public Map<String, Object> deleteStudent(String[] id){
+        System.out.println("deleteStudent -> " + Arrays.toString(id));
         Map<String, Object> map = new HashMap<String, Object>();
         int result = studentService.deleteByPrimaryKey(id);
         if(result > 0) {

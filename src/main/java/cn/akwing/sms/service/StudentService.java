@@ -13,7 +13,7 @@ public interface StudentService {
 
     List<Student> selectByCondition(Student student);
 
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(String[] id);
 
     int insertStudent(Student student);
 

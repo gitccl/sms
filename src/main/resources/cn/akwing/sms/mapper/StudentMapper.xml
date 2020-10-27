@@ -14,7 +14,10 @@
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from student
-        where id = #{id,jdbcType=VARCHAR}
+        where id IN
+        <foreach collection="id" item="singleId" index="index" open="(" close=")" separator=",">
+            #{singleId}
+        </foreach>
     </delete>
     <insert id="insert" parameterType="Student">
         insert into student (id, password, name,

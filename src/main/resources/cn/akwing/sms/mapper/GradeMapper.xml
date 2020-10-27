@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.akwing.sms.mapper.GradeMapper">
+    <resultMap id="BaseResultMap" type="Grade">
+        <id column="student_id" jdbcType="VARCHAR" property="studentId" />
+        <id column="course_id" jdbcType="VARCHAR" property="courseId" />
+        <result column="grade" property="grade" />
+        <result column="name" property="courseName" />
+        <result column="teacher_name" property="teacherName"/>
+        <result column="teacher_id" property="teacherId"/>
+        <result property="address" column="address"/>
+        <result property="credit" column="credit"/>
+    </resultMap>
+
+    <select id="selectByCondition" parameterType="Grade" resultMap="BaseResultMap">
+        select student_id, course_id, teacher_id, grade, course.name,
+               teacher.name as teacher_name, address, credit
+        from grade, course, teacher
+        where grade.course_id = course.id and course.teacher_id = teacher.id
+        <if test="studentId != null">
+            and student_id = #{studentId}
+        </if>
+        <if test="teacherId != null">
+            and teacher.id = #{teacherId}
+        </if>
+    </select>
+
+    <update id="update" parameterType="Grade">
+        update grade
+        set course_id = #{courseId}, grade = #{grade}
+        where student_id = #{studentId} and course_id = #{olderCourseId}
+    </update>
+
+    <insert id="insert" parameterType="Grade">
+        insert into grade values(#{studentId}, #{courseId}, #{grade})
+    </insert>
+
+    <delete id="delete">
+        delete from grade where student_id = #{studentId} and course_id = #{courseId}
+    </delete>
+
+</mapper>

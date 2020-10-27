@@ -35,10 +35,12 @@ public class StudentController {
 
     @RequestMapping("/getStudentList")
     @ResponseBody
-    public Map<String, Object> getStudentList(int page, int limit, Student student){
-
+    public Map<String, Object> getStudentList(Integer page, Integer limit, Student student){
         /* 开启分页 */
-        PageHelper.startPage(page, limit);
+        if(page != null && limit != null) {
+            PageHelper.startPage(page, limit);
+        }
+
         List<Student> studentList = studentService.selectByCondition(student);
         PageInfo pageInfo = new PageInfo(studentList);
         Map<String, Object> map = new HashMap<String, Object>();

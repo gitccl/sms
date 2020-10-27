@@ -73,7 +73,7 @@
                         </a>
                     </li>
                     <li>
-                        <a _href="gradeManage.jsp">
+                        <a _href="${pageContext.request.contextPath}/grade/goGradeManage">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>选课管理</cite>
                         </a>

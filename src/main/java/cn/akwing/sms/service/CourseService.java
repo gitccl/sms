@@ -16,4 +16,6 @@ public interface CourseService {
     int insertCourse(Course course);
 
     int updateCourse(Course course);
+
+    List<Course> selectByStudentId(String studentId);
 }

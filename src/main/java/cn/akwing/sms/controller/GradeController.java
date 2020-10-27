@@ -1,7 +1,8 @@
 package cn.akwing.sms.controller;
 
 import cn.akwing.sms.pojo.Course;
-import cn.akwing.sms.service.CourseService;
+import cn.akwing.sms.pojo.Grade;
+import cn.akwing.sms.service.GradeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,44 +17,46 @@ import java.util.Map;
 /**
  * @author c1515
  */
-@RequestMapping("/course")
 @Controller
-public class CourseController {
-
+@RequestMapping("/grade")
+public class GradeController {
     @Autowired
-    private CourseService courseService;
+    private GradeService gradeService;
 
-    @RequestMapping("/goCourseManage")
-    public String goCourseManage(){
-        return "course/courseManage";
+    @RequestMapping("/goGradeManage")
+    public String goGradeManage(){
+        return "course/gradeManage";
     }
 
-    @RequestMapping("/getCourseList")
+
+    @RequestMapping("/getGradeList")
     @ResponseBody
-    public Map<String, Object> getCourseList(int page, int limit, Course course){
-        System.out.println("getCourseList ->" + course);
+    public Map<String, Object> getGradeList(Integer page, Integer limit, Grade grade){
+        System.out.println("getCourseList ->" + grade);
         /* 开启分页 */
-        PageHelper.startPage(page, limit);
-        List<Course> courseList = courseService.selectByCondition(course);
-        PageInfo pageInfo = new PageInfo(courseList);
+        if(page != null && limit != null) {
+            PageHelper.startPage(page, limit);
+        }
+        List<Grade> gradeList = gradeService.selectByCondition(grade);
+        PageInfo pageInfo = new PageInfo(gradeList);
         Map<String, Object> map = new HashMap<String, Object>();
 
         /* 将数据返回给前端 */
         map.put("code", "0");
         map.put("msg", "0");
         map.put("count", pageInfo.getTotal());
-        map.put("data", courseList);
+        map.put("data", gradeList);
 
         return map;
     }
 
 
-    @RequestMapping("/addCourse")
+    @RequestMapping("/addGrade")
     @ResponseBody
-    public Map<String, Object> insertCourse(Course course){
-        System.out.println("insertCourse ->" + course);
+    public Map<String, Object> insertGrade(Grade grade){
+        System.out.println("insertGrade ->" + grade);
         Map<String, Object> map = new HashMap<String, Object>();
-        int result = courseService.insertCourse(course);
+        int result = gradeService.insert(grade);
         if(result > 0) {
             map.put("success", true);
             map.put("msg","添加成功");
@@ -64,12 +67,11 @@ public class CourseController {
         return map;
     }
 
-    @RequestMapping("/deleteCourse")
+    @RequestMapping("/deleteGrade")
     @ResponseBody
-    public Map<String, Object> deleteCourse(String id){
-        System.out.println("deleteCourse ->" + id);
+    public Map<String, Object> deleteGrade(String studentId, String courseId){
         Map<String, Object> map = new HashMap<String, Object>();
-        int result = courseService.deleteByPrimaryKey(id);
+        int result = gradeService.delete(studentId, courseId);
         if(result > 0) {
             map.put("success", true);
             map.put("msg","删除成功");
@@ -81,12 +83,11 @@ public class CourseController {
 
     }
 
-    @RequestMapping("/updateCourse")
+    @RequestMapping("/updateGrade")
     @ResponseBody
-    public Map<String, Object> updateCourse(Course course){
-        System.out.println("updateCourse ->" + course);
+    public Map<String, Object> updateGrade(Grade grade){
         Map<String, Object> map = new HashMap<String, Object>();
-        int result = courseService.updateCourse(course);
+        int result = gradeService.update(grade);
         if(result > 0) {
             map.put("success", true);
             map.put("msg","修改成功");
@@ -96,16 +97,6 @@ public class CourseController {
         }
         return map;
 
-    }
-
-
-    @RequestMapping("/selectCourseByStudent")
-    @ResponseBody
-    public Map<String, Object> selectCourseByStudent(String studentId){
-        Map<String, Object> map = new HashMap<String, Object>();
-        List<Course> courseList = courseService.selectByStudentId(studentId);
-        map.put("data", courseList);
-        return map;
     }
 
 

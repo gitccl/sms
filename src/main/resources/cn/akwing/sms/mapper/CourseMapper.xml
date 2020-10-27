@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.akwing.sms.mapper.CourseMapper">
-    <resultMap id="BaseResultMap" type="cn.akwing.sms.pojo.Course">
+    <resultMap id="BaseResultMap" type="Course">
         <id column="id" jdbcType="VARCHAR" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="teacher_id" jdbcType="VARCHAR" property="teacherId" />
         <result column="address" jdbcType="VARCHAR" property="address" />
         <result column="credit" jdbcType="DECIMAL" property="credit" />
-        <result column="teacherName" jdbcType="VARCHAR" property="teacherName"/>
+        <result column="teacher_name" jdbcType="VARCHAR" property="teacherName"/>
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from course
         where id = #{id,jdbcType=VARCHAR}
     </delete>
-    <insert id="insert" parameterType="cn.akwing.sms.pojo.Course">
+    <insert id="insert" parameterType="Course">
         insert into course (id, name, teacher_id,
                             address, credit)
         values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{teacherId,jdbcType=VARCHAR},
                 #{address,jdbcType=VARCHAR}, #{credit,jdbcType=DECIMAL})
     </insert>
-    <update id="updateByPrimaryKey" parameterType="cn.akwing.sms.pojo.Course">
+    <update id="updateByPrimaryKey" parameterType="Course">
         update course
         set name = #{name,jdbcType=VARCHAR},
             teacher_id = #{teacherId,jdbcType=VARCHAR},
@@ -39,7 +39,7 @@
 
     <select id="selectByCondition" parameterType="Course" resultMap="BaseResultMap">
         select c.id as id, c.name as name, c.teacher_id as teacher_id,
-               c.address as address, c.credit as credit, t.name as teacherName
+               c.address as address, c.credit as credit, t.name as teacher_name
         from course as c, teacher as t
         where c.teacher_id = t.id
         <if test="name != null">
@@ -48,8 +48,11 @@
         <if test="teacherName != null">
             and t.name = #{teacherName}
         </if>
-
-
     </select>
-
+    
+    <select id="selectByStudentId" resultMap="BaseResultMap">
+        select * from course where id not in
+        (select course_id from grade where student_id = #{studentId})
+    </select>
+    
 </mapper>

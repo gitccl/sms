@@ -114,7 +114,7 @@
            style="display:inline-block;width:200px; padding-left: 10px; margin-left: 10px;">
     <input type="text" name="teacherName" id="teacherName" placeholder="请输入教师姓名" autocomplete="off" class="layui-input"
            style="display:inline-block;width:150px; padding-left: 10px; margin-left: 10px;">
-    <button class="layui-btn" lay-submit="" lay-event="search"><i class="layui-icon">&#xe615;</i></button>
+    <button class="layui-btn" lay-submit="" lay-event="search" style="margin-left: 15px"><i class="layui-icon">&#xe615;</i></button>
 </script>
 <script>
     $(function () {

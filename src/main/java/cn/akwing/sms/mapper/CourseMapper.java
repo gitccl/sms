@@ -17,4 +17,6 @@ public interface CourseMapper {
     int updateByPrimaryKey(Course record);
 
     List<Course> selectByCondition(Course course);
+
+    List<Course> selectByStudentId(@Param("studentId") String studentId);
 }

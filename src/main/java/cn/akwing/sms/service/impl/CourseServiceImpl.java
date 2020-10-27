@@ -46,4 +46,9 @@ public class CourseServiceImpl implements CourseService {
     public int updateCourse(Course course) {
         return courseMapper.updateByPrimaryKey(course);
     }
+
+    @Override
+    public List<Course> selectByStudentId(String studentId) {
+        return courseMapper.selectByStudentId(studentId);
+    }
 }

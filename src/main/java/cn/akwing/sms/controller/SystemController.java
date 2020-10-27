@@ -1,7 +1,11 @@
 package cn.akwing.sms.controller;
 
 import cn.akwing.sms.pojo.Admin;
+import cn.akwing.sms.pojo.Course;
+import cn.akwing.sms.pojo.Teacher;
 import cn.akwing.sms.service.AdminService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +26,7 @@ public class SystemController {
     private AdminService adminService;
 
     @RequestMapping("/goLogin")
-    private String goLogin(){
+    private String goLogin() {
         return "system/login";
     }
 

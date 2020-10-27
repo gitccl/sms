@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.akwing.sms.mapper.TeacherMapper">
-  <resultMap id="BaseResultMap" type="cn.akwing.sms.pojo.Teacher">
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="sex" jdbcType="VARCHAR" property="sex" />
-    <result column="tel" jdbcType="VARCHAR" property="tel" />
-    <result column="dept" jdbcType="VARCHAR" property="dept" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from teacher
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="cn.akwing.sms.pojo.Teacher">
-    insert into teacher (id, password, name, 
-      sex, tel, dept)
-    values (#{id,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{dept,jdbcType=VARCHAR})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="cn.akwing.sms.pojo.Teacher">
-    update teacher
-    set password = #{password,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=VARCHAR},
-      tel = #{tel,jdbcType=VARCHAR},
-      dept = #{dept,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select id, password, name, sex, tel, dept
-    from teacher
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select id, password, name, sex, tel, dept
-    from teacher
-  </select>
+    <resultMap id="BaseResultMap" type="cn.akwing.sms.pojo.Teacher">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="sex" jdbcType="VARCHAR" property="sex" />
+        <result column="tel" jdbcType="VARCHAR" property="tel" />
+        <result column="dept" jdbcType="VARCHAR" property="dept" />
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from teacher
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="cn.akwing.sms.pojo.Teacher">
+        insert into teacher (id, password, name,
+                             sex, tel, dept)
+        values (#{id,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+                #{sex,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{dept,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="cn.akwing.sms.pojo.Teacher">
+        update teacher
+        set password = #{password,jdbcType=VARCHAR},
+            name = #{name,jdbcType=VARCHAR},
+            sex = #{sex,jdbcType=VARCHAR},
+            tel = #{tel,jdbcType=VARCHAR},
+            dept = #{dept,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select id, password, name, sex, tel, dept
+        from teacher
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select id, password, name, sex, tel, dept
+        from teacher
+    </select>
 </mapper>

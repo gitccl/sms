@@ -7,11 +7,21 @@ public class Course {
 
     private String name;
 
-    private String dept;
+    private String teacherId;
 
     private String address;
 
     private BigDecimal credit;
+
+    private String teacherName;
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName == null ? null : teacherName.trim();
+    }
 
     public String getId() {
         return id;
@@ -29,12 +39,12 @@ public class Course {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getDept() {
-        return dept;
+    public String getTeacherId() {
+        return teacherId;
     }
 
-    public void setDept(String dept) {
-        this.dept = dept == null ? null : dept.trim();
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId == null ? null : teacherId.trim();
     }
 
     public String getAddress() {

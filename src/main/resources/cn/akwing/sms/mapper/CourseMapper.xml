@@ -1,38 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.akwing.sms.mapper.CourseMapper">
-  <resultMap id="BaseResultMap" type="cn.akwing.sms.pojo.Course">
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="teacher_id" jdbcType="VARCHAR" property="teacherId" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="credit" jdbcType="DECIMAL" property="credit" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from course
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="cn.akwing.sms.pojo.Course">
-    insert into course (id, name, teacher_id, 
-      address, credit)
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{teacherId,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{credit,jdbcType=DECIMAL})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="cn.akwing.sms.pojo.Course">
-    update course
-    set name = #{name,jdbcType=VARCHAR},
-      teacher_id = #{teacherId,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      credit = #{credit,jdbcType=DECIMAL}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select id, name, teacher_id, address, credit
-    from course
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select id, name, teacher_id, address, credit
-    from course
-  </select>
+    <resultMap id="BaseResultMap" type="cn.akwing.sms.pojo.Course">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="teacher_id" jdbcType="VARCHAR" property="teacherId" />
+        <result column="address" jdbcType="VARCHAR" property="address" />
+        <result column="credit" jdbcType="DECIMAL" property="credit" />
+        <result column="teacherName" jdbcType="VARCHAR" property="teacherName"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from course
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="cn.akwing.sms.pojo.Course">
+        insert into course (id, name, teacher_id,
+                            address, credit)
+        values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{teacherId,jdbcType=VARCHAR},
+                #{address,jdbcType=VARCHAR}, #{credit,jdbcType=DECIMAL})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="cn.akwing.sms.pojo.Course">
+        update course
+        set name = #{name,jdbcType=VARCHAR},
+            teacher_id = #{teacherId,jdbcType=VARCHAR},
+            address = #{address,jdbcType=VARCHAR},
+            credit = #{credit,jdbcType=DECIMAL}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select id, name, teacher_id, address, credit
+        from course
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select id, name, teacher_id, address, credit
+        from course
+    </select>
+
+    <select id="selectByCondition" parameterType="Course" resultMap="BaseResultMap">
+        select c.id as id, c.name as name, c.teacher_id as teacher_id,
+               c.address as address, c.credit as credit, t.name as teacherName
+        from course as c, teacher as t
+        where c.teacher_id = t.id
+        <if test="name != null">
+            and c.name = #{name}
+        </if>
+        <if test="teacherName != null">
+            and t.name = #{teacherName}
+        </if>
+
+
+    </select>
+
 </mapper>

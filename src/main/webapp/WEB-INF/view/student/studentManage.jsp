@@ -236,9 +236,9 @@
                         break;
                     //根据学号查找
                     case 'search':
-                        let preId = $("#studentId").val();
-                        let preName = $("#studentName").val();
-                        let preClass = $("#studentClass").val();
+                        var preId = $("#studentId").val();
+                        var preName = $("#studentName").val();
+                        var preClass = $("#studentClass").val();
 
                         table.reload('studentTable', {
                             url: '${pageContext.request.contextPath}/student/getStudentList',
@@ -290,7 +290,7 @@
                         for(var j = 0,len = data.length; j < len; j++){
                             ids[j] = data[j].id;
                         }
-                        /* TODO: 删除后刷新页面，或者obj.del() ? */
+
                         layer.confirm('确定删除选中的行吗？', function (index) {
                             layer.close(index);
                             $.ajax({
@@ -322,10 +322,8 @@
                 if (obj.event === 'del') {
                     layer.confirm('真的删除行么', function (index) {
                         var ids = [data.id];
-                        console.log("del one ->" + ids);
                         $.ajax({
                             url: "${pageContext.request.contextPath}/student/deleteStudent",
-                            /* TODO: 测POST */
                             method: "GET",
                             traditional: true,
                             data: {"id": ids },

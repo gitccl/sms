@@ -67,7 +67,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="sourceManage.jsp">
+                        <a _href="${pageContext.request.contextPath}/course/goCourseManage">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>课程管理</cite>
                         </a>

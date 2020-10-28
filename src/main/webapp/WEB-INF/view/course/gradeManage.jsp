@@ -50,7 +50,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">课程</label>
             <div class="layui-input-inline">
-                <select lay-verify="required" name="course_id" class="editCourseSelect" lay-filter="course" lay-search>
+                <select lay-verify="required" name="courseId" class="editCourseSelect" lay-filter="course" lay-search>
                     <option value="">请选择</option>
                 </select>
             </div>
@@ -70,7 +70,7 @@
 </script>
 <script type="text/html" id="toolbar">
     <button class="layui-btn layui-btn-danger" lay-event="refresh"><i class="layui-icon">&#xe669</i>刷新</button>
-    <button class="layui-btn" lay-event="add"><i class="layui-icon"></i>添加</button>
+    <button class="layui-btn" lay-event="add"><i class="layui-icon">&#xe61f;</i>添加</button>
     <input type="text" name="studentId" id="studentId" placeholder="请输入学生的学号" autocomplete="off" class="layui-input"
            style="display:inline-block;width:200px;padding-left: 10px; margin-left: 10px;">
     <input type="text" name="teacherId" id="teacherId" placeholder="请输入老师的工号" autocomplete="off" class="layui-input"
@@ -93,7 +93,7 @@
                 , cols: [[
                     {field: 'studentId', title: '学号', sort: true}
                     , {field: 'courseName', title: '课程名', align: 'center'}
-                    , {field: 'teacherName', title: '讲师', align: 'center'}
+                    , {field: 'teacherName', title: '任课教师', align: 'center'}
                     , {field: 'address', title: '上课地点', align: 'center'}
                     , {field: 'credit', title: '学分', align: 'center'}
                     , {field: 'one', title: '操作', align: 'center', fixed: 'right', toolbar: '#bar'}
@@ -117,7 +117,7 @@
                             for (let k in list) {
                                 $(".studentSelect").append("<option value='" + list[k].id + "'>" + list[k].id + "</option>");
                             }
-                            form.render();
+                            form.render('select');
                         }
                     })
                 }
@@ -144,7 +144,7 @@
                         //把遍历的数据放到select表里面
                         $("#selectCourse").append(html);
                         //从新刷新了一下下拉框
-                        form.render();      //重新渲染
+                        form.render('select');      //重新渲染
                     }
                 });
             });
@@ -170,6 +170,9 @@
                     case 'search':
                         table.reload('gradeTable', {
                             url: '${pageContext.request.contextPath}/grade/getGradeList',
+                            page: {
+                                curr: 1
+                            },
                             where: {
                                 studentId: $("#studentId").val(),
                                 teacherId: $("#teacherId").val()
@@ -220,10 +223,9 @@
                         },
                         success: function (e) {
                             console.log(e.data);
-                            //empty() 方法从被选元素移除所有内容
+                            // empty() 方法从被选元素移除所有内容
                             $(".editCourseSelect").empty();
-                            $(".editCourseSelect").append("<option value='" + data.course_id + "'>" + data.name + "</option>");
-                            let html = "<option value='0'>请选择</option>";
+                            let html = "<option value='0' disabled=''>请选择</option>";
                             $(e.data).each(function (v, k) {
                                 html += "<option value='" + k.id + "'>" + k.name + "</option>";
                             });
@@ -234,8 +236,6 @@
                         }
                     });
                     form.on('submit(editCourse)', function (list) {
-                        console.log(obj.data.student_id);
-                        console.log(list.field.course_id);
                         $.ajax({
                             url: "${pageContext.request.contextPath}/grade/updateGrade",
                             data: {

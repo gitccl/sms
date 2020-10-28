@@ -86,6 +86,7 @@ public class GradeController {
     @RequestMapping("/updateGrade")
     @ResponseBody
     public Map<String, Object> updateGrade(Grade grade){
+        System.out.println("updateGrade -> " + grade);
         Map<String, Object> map = new HashMap<String, Object>();
         int result = gradeService.update(grade);
         if(result > 0) {

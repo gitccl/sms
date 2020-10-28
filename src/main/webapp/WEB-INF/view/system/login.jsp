@@ -10,6 +10,11 @@
 
     <link href="${pageContext.request.contextPath}/static/layui/css/layui.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/static/layui/css/xadmin.css" rel="stylesheet">
+
+    <style>
+        .
+    </style>
+
 </head>
 <body class="login-bg">
 
@@ -17,13 +22,22 @@
     <div class="message">欢迎登录学生信息管理系统</div>
     <div id="darkbannerwrap"></div>
     <div class="layui-form">
-        <hr class="hr15">
-        <input id="loginName" name="id"  placeholder="用户名" type="text" lay-verify="required" class="layui-input">
-        <hr class="hr15">
-        <input id="password" name="password" lay-verify="required" placeholder="密码" type="password" class="layui-input">
-        <hr class="hr15">
-        <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
-        <hr class="hr20">
+        <div class="layui-form-item">
+            <input id="loginName" name="id" placeholder="用户名" type="text" lay-verify="required" class="layui-input">
+        </div>
+        <div class="layui-form-item">
+            <input id="password" name="password" lay-verify="required" placeholder="密码" type="password" class="layui-input">
+        </div>
+        <div class="layui-form-item ">
+            <input name="verCode" lay-verify="required|captcha" placeholder="验证码" type="text"
+                   class="layui-input-inline" style="width: 150px;">
+            <div class="captcha-img">
+                <img src="${pageContext.request.contextPath}/system/getCaptcha" title="点击图片切换验证码" id="captcha" width="130px" height="50px" style="margin-left: 20px">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+        </div>
     </div>
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.10.2.min.js"></script>
@@ -31,6 +45,12 @@
 <script src="${pageContext.request.contextPath}/static/js/xadmin.js"></script>
 <script>
     $(function () {
+
+        $("#captcha").click(function () {
+            this.src = "${pageContext.request.contextPath}/system/getCaptcha?t=" + new Date().getTime();
+        });
+
+
         layui.use('form', function () {
             const form = layui.form;
             form.on('submit(login)', function (data) {
@@ -43,12 +63,15 @@
                     async: true,
                     success: function (result) {
                         console.log(result);
+                        layer.msg(result.msg);
                         if (result.success) {
-                            layer.msg("登录成功");
                             window.location.href = "${pageContext.request.contextPath}/system/goMain";
                         } else {
-                            layer.msg("登录失败");
+                            /* 切换验证码，并清空输入框 */
+                            $("#captcha").click();
+                            $("input[name=verCode]").val("");
                         }
+
                     },
                     error: function () {
                         layer.msg("登录失败");

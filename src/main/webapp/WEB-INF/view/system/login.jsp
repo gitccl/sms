@@ -11,14 +11,11 @@
     <link href="${pageContext.request.contextPath}/static/layui/css/layui.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/static/layui/css/xadmin.css" rel="stylesheet">
 
-    <style>
-        .
-    </style>
 
 </head>
 <body class="login-bg">
 
-<div class="login layui-anim layui-anim-up">
+<div class="login layui-anim layui-anim-up" style="width: 800px;">
     <div class="message">欢迎登录学生信息管理系统</div>
     <div id="darkbannerwrap"></div>
     <div class="layui-form">
@@ -33,6 +30,13 @@
                    class="layui-input-inline" style="width: 150px;">
             <div class="captcha-img">
                 <img src="${pageContext.request.contextPath}/system/getCaptcha" title="点击图片切换验证码" id="captcha" width="130px" height="50px" style="margin-left: 20px">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-inline" style="width: 350px;">
+                <input type="radio" name="userType" title="管理员"  checked="" value="1">
+                <input type="radio" name="userType" title="教师"  value="2">
+                <input type="radio" name="userType" title="学生"  value="3">
             </div>
         </div>
         <div class="layui-form-item">

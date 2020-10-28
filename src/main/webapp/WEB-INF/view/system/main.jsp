@@ -19,7 +19,7 @@
 <body>
 <!-- 顶部开始 -->
 <div class="container">
-    <div class="logo"><a href="/">学生信息管理系统-V1.0</a></div>
+    <div class="logo"><a href="${pageContext.request.contextPath}/system/goMain">学生信息管理系统-V1.0</a></div>
     <div class="left_open">
         <i title="展开左侧栏" class="iconfont">&#xe699;</i>
     </div>
@@ -143,14 +143,7 @@
     $(function () {
         let userType = ${sessionScope.userType};
         console.log("main: " + typeof (userType) + userType);
-        if(userType == 1){
-            $("#user").text("admin");
-            $("#studentInfo").css("display","none");
-            $("#updatePassword").css("display","none");
-            $("#stuInfo").css("display","none");
-        }else{
-            $("#user").text("${sessionScope.student.name}");
-        }
+        $("#user").text("${sessionScope.userInfo.id}");
     })
 </script>
 </html>

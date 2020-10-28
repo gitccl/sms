@@ -51,7 +51,10 @@
                 and dept = #{dept}
             </if>
         </where>
+    </select>
 
+    <select id="login" resultMap="BaseResultMap">
+        select * from teacher where id = #{id} and password = #{password}
     </select>
 
 </mapper>

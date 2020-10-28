@@ -66,6 +66,11 @@ public class StudentController {
     public Map<String, Object> deleteStudent(String[] id){
         System.out.println("deleteStudent -> " + Arrays.toString(id));
         Map<String, Object> map = new HashMap<String, Object>();
+        if(id == null) {
+            map.put("success", false);
+            map.put("msg","请选择需要删除的内容");
+            return map;
+        }
         int result = studentService.deleteByPrimaryKey(id);
         if(result > 0) {
             map.put("success", true);

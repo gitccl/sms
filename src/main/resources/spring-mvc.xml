@@ -22,12 +22,17 @@
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/static/**"/>
-<!--            <mvc:exclude-mapping path="/static/easyui/**"/>-->
             <mvc:exclude-mapping path="/system/goLogin"/>
             <mvc:exclude-mapping path="/system/login"/>
             <mvc:exclude-mapping path="/system/getCaptcha"/>
-<!--            <mvc:exclude-mapping path="/system/getVerifiCodeImage"/>-->
             <bean class="cn.akwing.sms.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/**"/>
+            <mvc:mapping path="/teacher/**"/>
+            <mvc:mapping path="/student/**"/>
+            <mvc:mapping path="/grade/**"/>
+            <bean class="cn.akwing.sms.interceptor.AuthorityInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 

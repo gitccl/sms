@@ -196,7 +196,7 @@
                     layer.confirm('真的删除行么', function (index) {
                         $.ajax({
                             url: "${pageContext.request.contextPath}/grade/deleteGrade",
-                            method: "GET",
+                            method: "POST",
                             data: {
                                 "courseId": data.courseId,
                                 "studentId": data.studentId

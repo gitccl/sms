@@ -54,4 +54,9 @@ public class StudentServiceImpl implements StudentService {
     public int updateStudent(Student student) {
         return studentMapper.updateByPrimaryKey(student);
     }
+
+    @Override
+    public Student login(String id, String password) {
+        return studentMapper.login(id, password);
+    }
 }

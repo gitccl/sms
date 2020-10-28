@@ -18,4 +18,6 @@ public interface TeacherService {
     int insert(Teacher record);
 
     int deleteByPrimaryKey(String id);
+
+    Teacher login(String id, String password);
 }

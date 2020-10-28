@@ -1,6 +1,8 @@
 package cn.akwing.sms.mapper;
 
 import cn.akwing.sms.pojo.Teacher;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface TeacherMapper {
@@ -15,4 +17,6 @@ public interface TeacherMapper {
     int updateByPrimaryKey(Teacher record);
 
     List<Teacher> selectByCondition(Teacher teacher);
+
+    Teacher login(@Param("id") String id, @Param("password") String password);
 }

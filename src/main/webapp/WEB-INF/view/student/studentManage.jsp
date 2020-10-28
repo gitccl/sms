@@ -203,16 +203,7 @@
                 , limits: [5, 10, 15, 20]
                 , limit: 10
                 , done: function (res, curr, count) {
-                    let userType = ${sessionScope.userType};
-                    if ( userType == 1) {
-                        /* 如果是管理员, 不显示编辑个人信息 */
-                        $("#editOwner").css("display", "none");
-                    } else {
-                        /* 如果是学生，不显示操作、密码和添加 */
-                        $(".layui-table").find("[data-field='one']").css("display", "none");
-                        $(".layui-table").find("[data-field='password']").css("display", "none");
-                        $("#add").css("display", "none");
-                    }
+                    $("#editOwner").css("display", "none");
                 }
             });
 
@@ -285,6 +276,9 @@
                     case 'delMany':
                         var checkStatus = table.checkStatus(obj.config.id);
                         var data = checkStatus.data
+                        if(data.length == 0) {
+                            break;
+                        }
                         console.log(data);
                         var ids = new Array(data.length);
                         for(var j = 0,len = data.length; j < len; j++){

@@ -18,4 +18,6 @@ public interface StudentService {
     int insertStudent(Student student);
 
     int updateStudent(Student student);
+
+    Student login(String id, String password);
 }

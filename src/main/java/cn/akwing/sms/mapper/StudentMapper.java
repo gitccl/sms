@@ -18,4 +18,5 @@ public interface StudentMapper {
 
     List<Student> selectByCondition(Student student);
 
+    Student login(@Param("id") String id, @Param("password") String password);
 }

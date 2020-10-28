@@ -127,7 +127,7 @@
                 elem: '#courseTable'
                 , url: '${pageContext.request.contextPath}/course/getCourseList'
                 , cellMinWidth: 80
-                , height: 500
+                , height: 550
                 , toolbar: '#toolbar'
                 , cols: [[
                     {field: 'id', title: '课程号', sort: true}
@@ -205,7 +205,7 @@
                     layer.confirm('真的删除行么', function (index) {
                         $.ajax({
                             url: "${pageContext.request.contextPath}/course/deleteCourse",
-                            method: "GET",
+                            method: "POST",
                             data: {"id": data.id},
                             success: function (data) {
                                 if (data.success) {

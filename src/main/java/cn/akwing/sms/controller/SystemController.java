@@ -4,6 +4,8 @@ import cn.akwing.sms.pojo.Admin;
 import cn.akwing.sms.pojo.Course;
 import cn.akwing.sms.pojo.Teacher;
 import cn.akwing.sms.service.AdminService;
+import cn.akwing.sms.service.StudentService;
+import cn.akwing.sms.service.TeacherService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wf.captcha.utils.CaptchaUtil;
@@ -28,6 +30,12 @@ public class SystemController {
     @Autowired
     private AdminService adminService;
 
+    @Autowired
+    private TeacherService teacherService;
+
+    @Autowired
+    private StudentService studentService;
+
     @RequestMapping("/goLogin")
     private String goLogin() {
         return "system/login";
@@ -40,9 +48,10 @@ public class SystemController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public Map<String, Object> login(String id, String password, String verCode, HttpSession session, HttpServletRequest request){
-        System.out.println(id + " " + password);
+    public Map<String, Object> login(String id, String password, String verCode, String userType, HttpSession session, HttpServletRequest request){
+        System.out.println(id + " " + password + " " + userType);
         Map<String, Object> map = new HashMap<String, Object>();
+
         if (!CaptchaUtil.ver(verCode, request)) {
             CaptchaUtil.clear(request);
             map.put("success", false);
@@ -50,16 +59,30 @@ public class SystemController {
             return map;
         }
 
-        Admin admin = adminService.login(id, password);
-        if(admin != null) {
-            session.setAttribute("userInfo", admin);
-            session.setAttribute("userType", 1);
+        Object object = null;
+
+        switch (userType) {
+            case "1":
+                object = adminService.login(id, password);
+                break;
+            case "2":
+                object = teacherService.login(id, password);
+                break;
+            case "3":
+                object = studentService.login(id, password);
+                break;
+        }
+
+        if(object != null) {
+            session.setAttribute("userInfo", object);
+            session.setAttribute("userType", Integer.parseInt(userType));
             map.put("success", true);
             map.put("msg", "登录成功");
         } else{
             map.put("success", false);
             map.put("msg", "用户名或密码错误");
         }
+
         return map;
     }
 

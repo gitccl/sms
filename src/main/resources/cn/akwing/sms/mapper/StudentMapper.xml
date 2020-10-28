@@ -64,6 +64,8 @@
             </if>
         </where>
     </select>
-
+    <select id="login" resultMap="BaseResultMap">
+        select * from student where id = #{id} and password = #{password}
+    </select>
 
 </mapper>

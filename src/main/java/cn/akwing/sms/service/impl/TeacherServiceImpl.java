@@ -51,4 +51,9 @@ public class TeacherServiceImpl implements TeacherService {
     public int deleteByPrimaryKey(String id) {
         return teacherMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public Teacher login(String id, String password) {
+        return teacherMapper.login(id, password);
+    }
 }

@@ -28,6 +28,11 @@ public class GradeController {
         return "course/gradeManage";
     }
 
+    @RequestMapping("/goExamManage")
+    public String goExamManage(){
+        return "grade/examManage";
+    }
+
 
     @RequestMapping("/getGradeList")
     @ResponseBody

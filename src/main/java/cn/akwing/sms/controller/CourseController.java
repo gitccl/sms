@@ -30,10 +30,12 @@ public class CourseController {
 
     @RequestMapping("/getCourseList")
     @ResponseBody
-    public Map<String, Object> getCourseList(int page, int limit, Course course){
+    public Map<String, Object> getCourseList(Integer page, Integer limit, Course course){
         System.out.println("getCourseList ->" + course);
         /* 开启分页 */
-        PageHelper.startPage(page, limit);
+        if(page != null && limit != null) {
+            PageHelper.startPage(page, limit);
+        }
         List<Course> courseList = courseService.selectByCondition(course);
         PageInfo pageInfo = new PageInfo(courseList);
         Map<String, Object> map = new HashMap<String, Object>();

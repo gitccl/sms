@@ -56,7 +56,6 @@
                             <cite>学生信息</cite>
                         </a>
                     </li>
-
                 </ul>
             </li>
             <li>
@@ -88,7 +87,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="examManage.jsp">
+                        <a _href="${pageContext.request.contextPath}/grade/goExamManage">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>学生成绩</cite>
                         </a>

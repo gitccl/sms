@@ -19,7 +19,7 @@
 <%-- 增加课程弹窗 --%>
 <div class="courseform" id="addCourse" hidden="hidden">
     <br>
-    <form class="layui-form layui-form-pane" id="studentform">
+    <form class="layui-form layui-form-pane">
         <div class="layui-form-item">
             <label class="layui-form-label">课程号</label>
             <div class="layui-input-inline">

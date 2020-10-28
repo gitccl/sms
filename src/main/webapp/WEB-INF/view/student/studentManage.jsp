@@ -21,7 +21,7 @@
 <%-- 增加学生弹窗 ---%>
 <div class="studentform" id="addstudent" hidden="hidden">
     <br>
-    <form class="layui-form layui-form-pane" id="studentform">
+    <form class="layui-form layui-form-pane">
         <div class="layui-form-item">
             <label class="layui-form-label">学号</label>
             <div class="layui-input-inline">

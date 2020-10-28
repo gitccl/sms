@@ -28,10 +28,12 @@ public class TeacherController {
 
     @RequestMapping("/getTeacherList")
     @ResponseBody
-    public Map<String, Object> getTeacherList(int page, int limit, Teacher teacher){
+    public Map<String, Object> getTeacherList(Integer page, Integer limit, Teacher teacher){
 
         /* 开启分页 */
-        PageHelper.startPage(page, limit);
+        if(page != null && limit != null) {
+            PageHelper.startPage(page, limit);
+        }
         List<Teacher> teacherList = teacherService.selectByCondition(teacher);
         PageInfo pageInfo = new PageInfo(teacherList);
         Map<String, Object> map = new HashMap<String, Object>();

@@ -46,6 +46,11 @@ public class SystemController {
         CaptchaUtil.out(request, response);
     }
 
+    @RequestMapping("/goInformation")
+    public String goInformation(){
+        return "system/information";
+    }
+
     @RequestMapping("/login")
     @ResponseBody
     public Map<String, Object> login(String id, String password, String verCode, String userType, HttpSession session, HttpServletRequest request){

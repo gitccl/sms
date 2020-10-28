@@ -39,7 +39,7 @@
     </select>
 
     <select id="selectByCondition" parameterType="Teacher" resultMap="BaseResultMap">
-        select * from teacher where
+        select * from teacher
         <where>
             <if test="id != null">
                 and id = #{id}

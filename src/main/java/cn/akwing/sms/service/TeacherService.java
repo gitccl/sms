@@ -12,4 +12,10 @@ public interface TeacherService {
     List<Teacher> selectByCondition(Teacher teacher);
 
     List<Teacher> selectAll();
+
+    int updateByPrimaryKey(Teacher record);
+
+    int insert(Teacher record);
+
+    int deleteByPrimaryKey(String id);
 }

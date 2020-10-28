@@ -1,10 +1,7 @@
 package cn.akwing.sms.controller;
 
-import cn.akwing.sms.pojo.Student;
 import cn.akwing.sms.pojo.Teacher;
 import cn.akwing.sms.service.TeacherService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +22,11 @@ public class TeacherController {
 
     @Autowired
     private TeacherService teacherService;
+
+    @RequestMapping("/goTeacherManage")
+    public String goTeacherManage(){
+        return "teacher/teacherManage";
+    }
 
     @RequestMapping("/getTeacherList")
     @ResponseBody
@@ -59,6 +61,51 @@ public class TeacherController {
         map.put("count", teacherList.size());
         map.put("data", teacherList);
 
+        return map;
+    }
+
+    @RequestMapping("/deleteTeacher")
+    @ResponseBody
+    public Map<String, Object> deleteTeacher(String id){
+        Map<String, Object> map = new HashMap<String, Object>();
+        int result = teacherService.deleteByPrimaryKey(id);
+        if(result > 0) {
+            map.put("success", true);
+            map.put("msg","删除成功");
+        }else{
+            map.put("success", false);
+            map.put("msg","删除失败");
+        }
+        return map;
+    }
+
+    @RequestMapping("/addTeacher")
+    @ResponseBody
+    public Map<String, Object> addTeacher(Teacher teacher){
+        Map<String, Object> map = new HashMap<String, Object>();
+        int result = teacherService.insert(teacher);
+        if(result > 0) {
+            map.put("success", true);
+            map.put("msg","添加成功");
+        }else{
+            map.put("success", false);
+            map.put("msg","添加失败");
+        }
+        return map;
+    }
+
+    @RequestMapping("/updateTeacher")
+    @ResponseBody
+    public Map<String, Object> updateTeacher(Teacher teacher){
+        Map<String, Object> map = new HashMap<String, Object>();
+        int result = teacherService.updateByPrimaryKey(teacher);
+        if(result > 0) {
+            map.put("success", true);
+            map.put("msg","修改成功");
+        }else{
+            map.put("success", false);
+            map.put("msg","修改失败");
+        }
         return map;
     }
 

@@ -2,6 +2,8 @@ package cn.akwing.sms.controller;
 
 import cn.akwing.sms.pojo.Course;
 import cn.akwing.sms.pojo.Grade;
+import cn.akwing.sms.pojo.Student;
+import cn.akwing.sms.pojo.Teacher;
 import cn.akwing.sms.service.GradeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,12 +39,22 @@ public class GradeController {
 
     @RequestMapping("/getGradeList")
     @ResponseBody
-    public Map<String, Object> getGradeList(Integer page, Integer limit, Grade grade){
+    public Map<String, Object> getGradeList(Integer page, Integer limit, Grade grade, HttpSession session){
         System.out.println("getCourseList ->" + grade);
         /* 开启分页 */
         if(page != null && limit != null) {
             PageHelper.startPage(page, limit);
         }
+
+        int userType = (int) session.getAttribute("userType");
+        if( userType == 2) {
+            Teacher teacher = (Teacher) session.getAttribute("userInfo");
+            grade.setTeacherId(teacher.getId());
+        } else if(userType == 3) {
+            Student student = (Student) session.getAttribute("userInfo");
+            grade.setStudentId(student.getId());
+        }
+
         List<Grade> gradeList = gradeService.selectByCondition(grade);
         PageInfo pageInfo = new PageInfo(gradeList);
         Map<String, Object> map = new HashMap<String, Object>();

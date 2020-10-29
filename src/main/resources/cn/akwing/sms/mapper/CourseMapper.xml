@@ -48,6 +48,9 @@
         <if test="teacherName != null">
             and t.name = #{teacherName}
         </if>
+        <if test="teacherId != null">
+            and c.teacher_id = #{teacherId}
+        </if>
     </select>
     
     <select id="selectByStudentId" resultMap="BaseResultMap">

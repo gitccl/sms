@@ -1,6 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -43,7 +43,8 @@
 <div class="left-nav">
     <div id="side-nav">
         <ul id="nav">
-
+            <%-- 教师和管理员能进行学生管理 --%>
+            <c:if test="${userType <= 2}">
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe6b8;</i>
@@ -59,6 +60,8 @@
                     </li>
                 </ul>
             </li>
+            </c:if>
+
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe723;</i>
@@ -66,12 +69,14 @@
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
+                    <c:if test="${userType <= 2}">
                     <li>
                         <a _href="${pageContext.request.contextPath}/course/goCourseManage">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>课程管理</cite>
                         </a>
                     </li>
+                    </c:if>
                     <li>
                         <a _href="${pageContext.request.contextPath}/grade/goGradeManage">
                             <i class="iconfont">&#xe6a7;</i>
@@ -95,6 +100,8 @@
                     </li>
                 </ul>
             </li>
+            <%-- 管理员能进行教师管理 --%>
+            <c:if test="${userType == 1}">
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe723;</i>
@@ -110,6 +117,7 @@
                     </li>
                 </ul>
             </li>
+            </c:if>
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe723;</i>

@@ -35,6 +35,7 @@
             <mvc:mapping path="/course/**"/>
             <mvc:mapping path="/grade/**"/>
             <mvc:exclude-mapping path="/teacher/updateTeacher"/>
+            <mvc:exclude-mapping path="/teacher/getAllTeacher"/>
             <mvc:exclude-mapping path="/student/updateStudent"/>
             <bean class="cn.akwing.sms.interceptor.AuthorityInterceptor"/>
         </mvc:interceptor>

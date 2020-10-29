@@ -1,6 +1,7 @@
 package cn.akwing.sms.controller;
 
 import cn.akwing.sms.pojo.Course;
+import cn.akwing.sms.pojo.Teacher;
 import cn.akwing.sms.service.CourseService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,12 +32,22 @@ public class CourseController {
 
     @RequestMapping("/getCourseList")
     @ResponseBody
-    public Map<String, Object> getCourseList(Integer page, Integer limit, Course course){
-        System.out.println("getCourseList ->" + course);
+    public Map<String, Object> getCourseList(Integer page, Integer limit, Course course, HttpSession session){
+
         /* 开启分页 */
         if(page != null && limit != null) {
             PageHelper.startPage(page, limit);
         }
+
+        /* 教师只能查看自己的课 */
+        int userType = (int) session.getAttribute("userType");
+        if( userType == 2) {
+            Teacher teacher = (Teacher) session.getAttribute("userInfo");
+            course.setTeacherId(teacher.getId());
+        }
+
+        System.out.println("getCourseList ->" + course);
+
         List<Course> courseList = courseService.selectByCondition(course);
         PageInfo pageInfo = new PageInfo(courseList);
         Map<String, Object> map = new HashMap<String, Object>();

@@ -70,7 +70,7 @@
 </script>
 <script type="text/html" id="toolbar">
     <button class="layui-btn layui-btn-danger" lay-event="refresh"><i class="layui-icon">&#xe669</i>刷新</button>
-    <button class="layui-btn" lay-event="add"><i class="layui-icon">&#xe61f;</i>添加</button>
+    <button class="layui-btn" lay-event="add" id="add"><i class="layui-icon">&#xe61f;</i>添加</button>
     <input type="text" name="studentId" id="studentId" placeholder="请输入学生的学号" autocomplete="off" class="layui-input"
            style="display:inline-block;width:200px;padding-left: 10px; margin-left: 10px;">
     <input type="text" name="teacherId" id="teacherId" placeholder="请输入老师的工号" autocomplete="off" class="layui-input"
@@ -102,11 +102,12 @@
                 , limits: [5, 10, 15]
                 , limit: 5
                 , done: function (res, curr, count) {
-                    <%--$(".layui-table").find("[data-field='one']").css("display","none");--%>
-                    <%--console.log("${sessionScope.student.id}")--%>
-                    <%--$('.studentSelect').empty();--%>
-                    <%--$(".studentSelect").append("<option value=${sessionScope.student.id}>${sessionScope.student.id}</option>");--%>
-                    <%--form.render();--%>
+                    var userType = ${sessionScope.userType};
+                    if( userType == 3) {
+                        $(".layui-table").find("[data-field='one']").css("display","none");
+                        $("#add").css("display", "none");
+                    }
+
                     //添加下拉框渲染
                     $.ajax({
                         url: "${pageContext.request.contextPath}/student/getStudentList",
@@ -183,6 +184,11 @@
                                 console.log("course查询done!");
                                 $("#studentId").val(preStudentId);
                                 $("#teacherId").val(preTeacherId);
+                                var userType = ${sessionScope.userType};
+                                if( userType == 3) {
+                                    $(".layui-table").find("[data-field='one']").css("display","none");
+                                    $("#add").css("display", "none");
+                                }
                             }
                         });
                 }

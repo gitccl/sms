@@ -110,6 +110,11 @@
                 ,limit: 5
                 ,done:function (res,curr,count){
                     console.log("exam table done");
+                    var userType = ${sessionScope.userType};
+                    if( userType == 3) {
+                        $(".layui-table").find("[data-field='one']").css("display","none");
+                        $("#add").css("display", "none");
+                    }
                 }
         });
             //添加下拉框渲染
@@ -184,6 +189,11 @@
                                 console.log("course查询done!");
                                 $("#studentId").val(preStudentId);
                                 $("#teacherId").val(preTeacherId);
+                                var userType = ${sessionScope.userType};
+                                if( userType == 3) {
+                                    $(".layui-table").find("[data-field='one']").css("display","none");
+                                    $("#add").css("display", "none");
+                                }
                             }
                         });
 

@@ -62,4 +62,16 @@ public class Course {
     public void setCredit(BigDecimal credit) {
         this.credit = credit;
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", teacherId='" + teacherId + '\'' +
+                ", address='" + address + '\'' +
+                ", credit=" + credit +
+                ", teacherName='" + teacherName + '\'' +
+                '}';
+    }
 }

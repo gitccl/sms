@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,13 +32,22 @@ public class TeacherController {
 
     @RequestMapping("/getTeacherList")
     @ResponseBody
-    public Map<String, Object> getTeacherList(Integer page, Integer limit, Teacher teacher){
+    public Map<String, Object> getTeacherList(Integer page, Integer limit, Teacher teacher, HttpSession session){
 
         /* 开启分页 */
         if(page != null && limit != null) {
             PageHelper.startPage(page, limit);
         }
-        List<Teacher> teacherList = teacherService.selectByCondition(teacher);
+
+        List<Teacher> teacherList = null;
+        int userType = (int) session.getAttribute("userType");
+
+        if(userType == 2){
+            teacherList = new ArrayList<Teacher>();
+            teacherList.add((Teacher)(session.getAttribute("userInfo")));
+        }else {
+            teacherList = teacherService.selectByCondition(teacher);
+        }
         PageInfo pageInfo = new PageInfo(teacherList);
         Map<String, Object> map = new HashMap<String, Object>();
 
@@ -51,9 +62,17 @@ public class TeacherController {
 
     @RequestMapping("/getAllTeacher")
     @ResponseBody
-    public Map<String, Object> getAllTeacher() {
-        List<Teacher> teacherList = teacherService.selectAll();
+    public Map<String, Object> getAllTeacher(HttpSession session) {
         Map<String, Object> map = new HashMap<String, Object>();
+        int userType = (int) session.getAttribute("userType");
+        List<Teacher> teacherList = null;
+        /* 如果是老师就返回自己 */
+        if(userType == 2){
+            teacherList = new ArrayList<Teacher>();
+            teacherList.add((Teacher)(session.getAttribute("userInfo")));
+        }else{
+            teacherList = teacherService.selectAll();
+        }
 
         /* 将数据返回给前端 */
         map.put("code", "0");

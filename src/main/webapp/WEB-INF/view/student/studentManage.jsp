@@ -160,7 +160,6 @@
     <button class="layui-btn layui-btn-danger" lay-event="refresh"><i class="layui-icon">&#xe669</i>刷新</button>
     <button class="layui-btn" lay-event="delMany" id="delMany"><i class="layui-icon">&#xe640;</i>删除</button>
     <button class="layui-btn" lay-event="add" id="add"><i class="layui-icon">&#xe61f;</i>添加学生</button>
-    <button class="layui-btn" lay-event="edit" id="editOwner"><i class="layui-icon"></i>修改个人信息</button>
 
     <input type="text" name="id" id="studentId" placeholder="请输入学生编号" autocomplete="off" class="layui-input"
            style="display:inline-block;width:150px; padding-left: 10px; margin-left: 10px;">
@@ -203,7 +202,7 @@
                 , limits: [5, 10, 15, 20]
                 , limit: 10
                 , done: function (res, curr, count) {
-                    $("#editOwner").css("display", "none");
+
                 }
             });
 
@@ -245,32 +244,10 @@
                             done: function (res, curr, count) {
                                 /* 填充搜索框 */
                                 console.log("查询done!");
-                                $("#editOwner").css("display", "none");
                                 $("#studentId").val(preId);
                                 $("#studentName").val(preName);
                                 $("#studentClass").val(preClass);
                             }
-                        });
-                        break;
-                    case "edit":
-                        layer.open({
-                            type: 1,
-                            area: ['650px', '400px'],
-                            shadeClose: true,
-                            closeBtn: 1, //显示关闭按钮
-                            title: '编辑学生信息',
-                            content: $("#editStudent"),
-                        });
-                        form.val('editform', {
-                            "id": "${sessionScope.student.id}",
-                            "password": "${sessionScope.student.password}",
-                            "name": "${sessionScope.student.name}",
-                            "sex": "${sessionScope.student.sex}",
-                            "grade": "${sessionScope.student.grade}",
-                            "tel": "${sessionScope.student.tel}",
-                            "dept": "${sessionScope.student.dept}",
-                            "major": "${sessionScope.student.major}",
-                            "ofClass": "${sessionScope.student.ofClass}"
                         });
                         break;
                     case 'delMany':
@@ -297,7 +274,6 @@
                                     if(data.success) {
                                         /* 刷新表格 */
                                         studentTable.reload();
-                                        $("#editOwner").css("display", "none");
                                     }
                                     layer.msg(data.msg);
                                 },

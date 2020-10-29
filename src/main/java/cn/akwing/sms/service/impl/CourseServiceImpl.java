@@ -20,7 +20,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<Course> selectByCondition(Course course){
-
+        /* 如果某个查询条件为空，不会通过后面mybatis查询的 if test ... != null */
         if(StringUtils.isNullOrEmpty(course.getName())) {
             course.setName(null);
         }

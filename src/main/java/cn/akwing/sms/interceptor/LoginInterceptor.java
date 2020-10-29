@@ -16,7 +16,6 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        //request.getRequestDispatcher(request.getContextPath() + "system/goLogin").forward(request, response);
         response.sendRedirect(request.getContextPath() + "/index.jsp");
         return false;
     }

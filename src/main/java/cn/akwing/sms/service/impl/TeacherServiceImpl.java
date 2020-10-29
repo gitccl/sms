@@ -20,6 +20,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public List<Teacher> selectByCondition(Teacher teacher) {
+        /* 如果某个查询条件为空，不会通过后面mybatis查询的 if test ... != null */
         if(StringUtils.isNullOrEmpty(teacher.getId())){
             teacher.setId(null);
         }

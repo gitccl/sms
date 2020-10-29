@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.akwing.sms.mapper.AdminMapper">
-    <resultMap id="BaseResultMap" type="cn.akwing.sms.pojo.Admin">
+    <resultMap id="BaseResultMap" type="Admin">
         <id column="id" jdbcType="VARCHAR" property="id" />
         <result column="password" jdbcType="VARCHAR" property="password" />
         <result column="name" jdbcType="VARCHAR" property="name" />
@@ -9,18 +9,6 @@
         <result column="email" jdbcType="VARCHAR" property="email" />
         <result column="tel" jdbcType="VARCHAR" property="tel" />
     </resultMap>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-        delete from admin
-        where id = #{id,jdbcType=VARCHAR}
-    </delete>
-    <insert id="insert" parameterType="Admin">
-        insert into admin (id, password, name,
-                           sex, email, tel
-        )
-        values (#{id,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
-                #{sex,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}
-               )
-    </insert>
     <update id="updateByPrimaryKey" parameterType="Admin">
         update admin
         set password = #{password,jdbcType=VARCHAR},
@@ -30,15 +18,6 @@
             tel = #{tel,jdbcType=VARCHAR}
         where id = #{id,jdbcType=VARCHAR}
     </update>
-    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-        select id, password, name, sex, email, tel
-        from admin
-        where id = #{id,jdbcType=VARCHAR}
-    </select>
-    <select id="selectAll" resultMap="BaseResultMap">
-        select id, password, name, sex, email, tel
-        from admin
-    </select>
 
     <select id="login" resultMap="BaseResultMap">
         select * from admin where id = #{id} and password = #{password}

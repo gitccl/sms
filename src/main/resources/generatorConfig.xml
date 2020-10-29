@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
+<!-- 使用mybatis-generator来快速产生pojo实体类, dao(mapper)接口, mapper.xml文件 -->
 <generatorConfiguration>
     <properties resource="database.properties"/>
     <context id="testTables" targetRuntime="MyBatis3Simple">

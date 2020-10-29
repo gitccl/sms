@@ -39,11 +39,7 @@
             of_class = #{ofClass,jdbcType=VARCHAR}
         where id = #{id,jdbcType=VARCHAR}
     </update>
-    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-        select id, password, name, sex, tel, grade, dept, major, of_class
-        from student
-        where id = #{id,jdbcType=VARCHAR}
-    </select>
+
     <select id="selectAll" resultMap="BaseResultMap">
         select id, password, name, sex, tel, grade, dept, major, of_class
         from student

@@ -27,11 +27,7 @@
             credit = #{credit,jdbcType=DECIMAL}
         where id = #{id,jdbcType=VARCHAR}
     </update>
-    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-        select id, name, teacher_id, address, credit
-        from course
-        where id = #{id,jdbcType=VARCHAR}
-    </select>
+
     <select id="selectAll" resultMap="BaseResultMap">
         select id, name, teacher_id, address, credit
         from course

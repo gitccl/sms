@@ -10,8 +10,6 @@ public interface TeacherMapper {
 
     int insert(Teacher record);
 
-    Teacher selectByPrimaryKey(String id);
-
     List<Teacher> selectAll();
 
     int updateByPrimaryKey(Teacher record);

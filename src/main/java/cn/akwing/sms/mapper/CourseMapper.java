@@ -10,8 +10,6 @@ public interface CourseMapper {
 
     int insert(Course record);
 
-    Course selectByPrimaryKey(String id);
-
     List<Course> selectAll();
 
     int updateByPrimaryKey(Course record);

@@ -297,6 +297,7 @@
                                     if(data.success) {
                                         /* 刷新表格 */
                                         studentTable.reload();
+                                        $("#editOwner").css("display", "none");
                                     }
                                     layer.msg(data.msg);
                                 },
@@ -313,6 +314,7 @@
             //监听表格行内工具栏
             table.on('tool(useruv)', function (obj) {
                 var data = obj.data;
+
                 if (obj.event === 'del') {
                     layer.confirm('真的删除行么', function (index) {
                         var ids = [data.id];

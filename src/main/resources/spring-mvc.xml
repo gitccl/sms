@@ -24,6 +24,7 @@
             <mvc:exclude-mapping path="/static/**"/>
             <mvc:exclude-mapping path="/system/goLogin"/>
             <mvc:exclude-mapping path="/system/login"/>
+            <mvc:exclude-mapping path="/system/getUserInfo"/>
             <mvc:exclude-mapping path="/system/getCaptcha"/>
             <bean class="cn.akwing.sms.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
@@ -31,7 +32,10 @@
             <mvc:mapping path="/admin/**"/>
             <mvc:mapping path="/teacher/**"/>
             <mvc:mapping path="/student/**"/>
+            <mvc:mapping path="/course/**"/>
             <mvc:mapping path="/grade/**"/>
+            <mvc:exclude-mapping path="/teacher/updateTeacher"/>
+            <mvc:exclude-mapping path="/student/updateStudent"/>
             <bean class="cn.akwing.sms.interceptor.AuthorityInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

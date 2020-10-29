@@ -1,13 +1,9 @@
 package cn.akwing.sms.controller;
 
-import cn.akwing.sms.pojo.Admin;
-import cn.akwing.sms.pojo.Course;
-import cn.akwing.sms.pojo.Teacher;
+
 import cn.akwing.sms.service.AdminService;
 import cn.akwing.sms.service.StudentService;
 import cn.akwing.sms.service.TeacherService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wf.captcha.utils.CaptchaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -103,10 +100,19 @@ public class SystemController {
     }
 
     @RequestMapping("/goLogout")
-    private String goLogout(HttpSession session){
+    private void goLogout(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
         session.removeAttribute("userInfo");
         session.removeAttribute("userType");
-        return "system/login";
+        response.sendRedirect(request.getContextPath());
+    }
+
+
+    @RequestMapping("/getUserInfo")
+    @ResponseBody
+    private Map<String, Object> getUserInfo(HttpSession session){
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userInfo", session.getAttribute("userInfo"));
+        return map;
     }
 
 }

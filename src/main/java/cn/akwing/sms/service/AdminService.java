@@ -9,5 +9,5 @@ public interface AdminService {
 
     Admin login(String id, String password);
 
-
+    int updateByPrimaryKey(Admin record);
 }

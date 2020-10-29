@@ -19,13 +19,16 @@ public class AuthorityInterceptor implements HandlerInterceptor {
         String uri = request.getRequestURI();
         String contextPath = request.getContextPath();
         if(userType == 1) {
+            /* 管理员 */
             return true;
         }else if(userType == 2) {
+            /* 教师 */
             if(uri.startsWith(contextPath + "/teacher") || uri.startsWith(contextPath + "/admin")) {
                 return false;
             }
             return true;
         } else if(userType == 3) {
+            /* 学生 */
             if(uri.startsWith(contextPath + "/teacher") || uri.startsWith(contextPath + "/admin")
                     || uri.startsWith(contextPath + "/student") ) {
                 return false;

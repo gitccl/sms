@@ -20,5 +20,10 @@ public class AdminServiceImpl implements AdminService {
         return adminMapper.login(id, password);
     }
 
+    @Override
+    public int updateByPrimaryKey(Admin record) {
+        return adminMapper.updateByPrimaryKey(record);
+    }
+
 
 }

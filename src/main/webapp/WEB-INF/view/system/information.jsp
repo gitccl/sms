@@ -23,7 +23,7 @@
     <br>
     <form class="layui-form layui-form-pane" id="editForm" lay-filter="editform">
         <div class="layui-form-item">
-            <label class="layui-form-label" id="idText"></label>
+            <label class="layui-form-label" id="idText">学号</label>
             <div class="layui-input-inline">
                 <input type="text" id="id" name="id" required lay-verify="required" autocomplete="off"
                        class="layui-input" readonly>
@@ -51,45 +51,56 @@
                        class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label" id="emailLabel">邮箱</label>
-            <div class="layui-input-inline">
-                <input type="text" id="email" name="email" required lay-verify="required|email" autocomplete="off"
-                       class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label" id="gradeLabel">年级</label>
-            <div class="layui-input-inline">
-                <input type="text" id="grade" name="grade" required lay-verify="required|number" autocomplete="off"
-                       class="layui-input">
-            </div>
-        </div>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label" id="deptLabel">院系</label>
-            <div class="layui-input-inline">
-                <input type="text" id="dept" name="dept" required lay-verify="required" autocomplete="off"
-                       class="layui-input">
+        <%-- 只有管理员有该字段 --%>
+        <c:if test="${userType == 1}">
+            <div class="layui-form-item">
+                <label class="layui-form-label" id="emailLabel">邮箱</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="email" name="email" required lay-verify="required|email" autocomplete="off"
+                           class="layui-input">
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label" id="ofClassLabel">班级</label>
-            <div class="layui-input-inline">
-                <input type="text" id="ofClass" name="ofClass" required lay-verify="required" autocomplete="off"
-                       class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-        </div>
+        </c:if>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label" id="majorLabel" hidden>专业</label>
-            <div class="layui-input-inline" hidden>
-                <input type="text" id="major" name="major" required lay-verify="required" autocomplete="off"
-                       class="layui-input">
+        <c:if test="${userType == 3}">
+            <div class="layui-form-item">
+                <label class="layui-form-label" id="gradeLabel">年级</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="grade" name="grade" required lay-verify="required|number" autocomplete="off"
+                           class="layui-input">
+                </div>
             </div>
-        </div>
+        </c:if>
+        <c:if test="${userType > 1}">
+            <div class="layui-form-item">
+                <label class="layui-form-label" id="deptLabel">院系</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="dept" name="dept" required lay-verify="required" autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
+        </c:if>
+        <c:if test="${userType == 3}">
+            <div class="layui-form-item">
+                <label class="layui-form-label" id="ofClassLabel">班级</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="ofClass" name="ofClass" required lay-verify="required" autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
+        </c:if>
+
+        <c:if test="${userType == 3}">
+            <div class="layui-form-item">
+                <label class="layui-form-label" id="majorLabel" hidden>专业</label>
+                <div class="layui-input-inline" hidden>
+                    <input type="text" id="major" name="major" required lay-verify="required" autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
+        </c:if>
+
         <div class="layui-form-item">
             <label class="layui-form-label">性别</label>
             <div class="layui-input-block">
@@ -121,63 +132,11 @@
                 success: function (data) {
                     var userInfo = data.userInfo;
                     var userType = ${sessionScope.userType};
-                    if(userType == 1) {
-                        $("#idText").text("学号");
-                    }else{
+                    if(userType != 3) {
                         $("#idText").text("工号");
                     }
+                    /* 渲染表单 */
                     form.val("editform", userInfo);
-                    if(userType == 1) {
-                        $("#tel").css("display", "none");
-                        $("#tel").removeAttr("required");
-                        $("#tel").removeAttr("lay-verify");
-                        $("#telLabel").css("display", "none");
-
-                        $("#grade").css("display", "none");
-                        $("#grade").removeAttr("required");
-                        $("#grade").removeAttr("lay-verify");
-                        $("#gradeLabel").css("display", "none");
-
-                        $("#dept").css("display", "none");
-                        $("#dept").removeAttr("required");
-                        $("#dept").removeAttr("lay-verify");
-                        $("#deptLabel").css("display", "none");
-
-                        $("#major").css("display", "none");
-                        $("#major").removeAttr("required");
-                        $("#major").removeAttr("lay-verify");
-                        $("#majorLabel").css("display", "none");
-
-                        $("#ofClass").css("display", "none");
-                        $("#ofClass").removeAttr("required");
-                        $("#ofClass").removeAttr("lay-verify");
-                        $("#ofClassLabel").css("display", "none");
-                    } else if(userType == 2) {
-                        $("#grade").css("display", "none");
-                        $("#grade").removeAttr("required");
-                        $("#grade").removeAttr("lay-verify");
-                        $("#gradeLabel").css("display", "none");
-
-                        $("#major").css("display", "none");
-                        $("#major").removeAttr("required");
-                        $("#major").removeAttr("lay-verify");
-                        $("#majorLabel").css("display", "none");
-
-                        $("#ofClass").css("display", "none");
-                        $("#ofClass").removeAttr("required");
-                        $("#ofClass").removeAttr("lay-verify");
-                        $("#ofClassLabel").css("display", "none");
-
-                        $("#email").css("display", "none");
-                        $("#email").removeAttr("required");
-                        $("#email").removeAttr("lay-verify");
-                        $("#emailLabel").css("display", "none");
-                    } else if(userType == 3){
-                        $("#email").css("display", "none");
-                        $("#email").removeAttr("required");
-                        $("#email").removeAttr("lay-verify");
-                        $("#emailLabel").css("display", "none");
-                    }
                 }
             });
             form.on("submit(edit)", function (data) {

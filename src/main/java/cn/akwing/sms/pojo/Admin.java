@@ -7,11 +7,11 @@ public class Admin {
 
     private String name;
 
-    private String gender;
+    private String sex;
 
     private String email;
 
-    private String telephone;
+    private String tel;
 
     public String getId() {
         return id;
@@ -37,12 +37,12 @@ public class Admin {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getGender() {
-        return gender;
+    public String getSex() {
+        return sex;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender == null ? null : gender.trim();
+    public void setSex(String sex) {
+        this.sex = sex == null ? null : sex.trim();
     }
 
     public String getEmail() {
@@ -53,11 +53,11 @@ public class Admin {
         this.email = email == null ? null : email.trim();
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getTel() {
+        return tel;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone == null ? null : telephone.trim();
+    public void setTel(String tel) {
+        this.tel = tel == null ? null : tel.trim();
     }
 }

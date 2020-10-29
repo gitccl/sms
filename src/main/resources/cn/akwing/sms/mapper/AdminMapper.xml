@@ -5,9 +5,9 @@
         <id column="id" jdbcType="VARCHAR" property="id" />
         <result column="password" jdbcType="VARCHAR" property="password" />
         <result column="name" jdbcType="VARCHAR" property="name" />
-        <result column="gender" jdbcType="CHAR" property="gender" />
+        <result column="sex" jdbcType="CHAR" property="sex" />
         <result column="email" jdbcType="VARCHAR" property="email" />
-        <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+        <result column="tel" jdbcType="VARCHAR" property="tel" />
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from admin
@@ -15,28 +15,28 @@
     </delete>
     <insert id="insert" parameterType="Admin">
         insert into admin (id, password, name,
-                           gender, email, telephone
+                           sex, email, tel
         )
         values (#{id,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
-                #{gender,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}
+                #{sex,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}
                )
     </insert>
     <update id="updateByPrimaryKey" parameterType="Admin">
         update admin
         set password = #{password,jdbcType=VARCHAR},
             name = #{name,jdbcType=VARCHAR},
-            gender = #{gender,jdbcType=CHAR},
+            sex = #{sex,jdbcType=CHAR},
             email = #{email,jdbcType=VARCHAR},
-            telephone = #{telephone,jdbcType=VARCHAR}
+            tel = #{tel,jdbcType=VARCHAR}
         where id = #{id,jdbcType=VARCHAR}
     </update>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-        select id, password, name, gender, email, telephone
+        select id, password, name, sex, email, tel
         from admin
         where id = #{id,jdbcType=VARCHAR}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
-        select id, password, name, gender, email, telephone
+        select id, password, name, sex, email, tel
         from admin
     </select>
 

@@ -19,8 +19,8 @@
 <p>操作系统: Windows 10 家庭版</p>
 <p>开发工具: Intellij IDEA 2020.1.1(Ultimate Edition)</p>
 <p>Java版本: Java8</p>
-<p>服务器: Tomcat 9.0</p>
-<p>数据库: Server version: 8.0.11 MySQL Community Server - GPL</p>
+<p>服务器: Tomcat 9.0.38</p>
+<p>数据库: Server version: 8.0.20 MySQL Community Server - GPL</p>
 <p>采用技术: JSP+jQuery+Ajax+Layui+Spring+Spring MVC+MyBatis+MySQL+Maven</p>
 </body>
 </html>

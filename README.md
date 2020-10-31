@@ -1,7 +1,11 @@
 ## 学生管理系统(Student Manage System)
 
 ### 项目概述
-这是我为了熟悉SSM框架写的一个学生管理系统, 是SSM的一个入门项目. 前端用的[Layui框架](https://www.layui.com/), 很多前端代码都是借鉴别人的.
+这是我为了熟悉SSM框架写的一个学生管理系统, 是SSM的一个入门项目. 前端用的[Layui框架](https://www.layui.com/), 很多前端代码都是借鉴别人的. 
+
+预览地址：http://sms.akwing.cn:8080/sms
+
+
 
 - 开发工具： Intellij IDEA 2020.1.1(Ultimate Edition) 
 - Java版本：Java8

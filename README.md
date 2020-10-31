@@ -5,6 +5,10 @@
 
 预览地址：http://sms.akwing.cn:8080/sms
 
+用户名:  admin
+
+密   码：admin
+
 
 
 - 开发工具： Intellij IDEA 2020.1.1(Ultimate Edition) 
